@@ -1,0 +1,27 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "rules": {
+    "no-restricted-imports": ["error", { "patterns": ["@/features/*/*"] }],
+    "import/no-restricted-paths": [
+      "error",
+      {
+        "zones": [
+          {
+            "target": "./src/features",
+            "from": "./src/app"
+          },
+          {
+            "target": [
+              "./src/components",
+              "./src/hooks",
+              "./src/lib",
+              "./src/types",
+              "./src/utils"
+            ],
+            "from": ["./src/features", "./src/app"]
+          }
+        ]
+      }
+    ]
+  }
+}
