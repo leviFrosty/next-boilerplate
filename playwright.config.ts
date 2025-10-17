@@ -49,24 +49,27 @@ export default defineConfig({
     ...(process.env.CI
       ? [
           {
-            name: 'firefox',
-            use: { ...devices['Desktop Firefox'] },
-          },
-
-          {
-            name: 'webkit',
-            use: { ...devices['Desktop Safari'] },
-          },
-
-          {
             name: 'Mobile Chrome',
             use: { ...devices['Pixel 5'] },
           },
+          // NOTE: add as needed. Adding slows down CI runs as it has to dl
+          // more dependencies and has to rerun the tests for each browser.
+          // {
+          //   name: 'firefox',
+          //   use: { ...devices['Desktop Firefox'] },
+          // },
 
-          {
-            name: 'Mobile Safari',
-            use: { ...devices['iPhone 15 Pro'] },
-          },
+          // NOTE: add as needed
+          // {
+          //   name: 'webkit',
+          //   use: { ...devices['Desktop Safari'] },
+          // },
+
+          // NOTE: add as needed
+          // {
+          //   name: 'Mobile Safari',
+          //   use: { ...devices['iPhone 15 Pro'] },
+          // },
         ]
       : []),
   ],
