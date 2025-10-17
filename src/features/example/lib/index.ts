@@ -1,4 +1,3 @@
-
 export function example() {
-    return 'example';
+  return 'example';
 }

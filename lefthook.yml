@@ -1,7 +1,7 @@
 pre-commit:
   parallel: true
   jobs:
-    - run: bunx prettier --write {staged_files}
+    - run: bunx pretty-quick --staged
       stage_fixed: true
 
     - run: bunx eslint --fix "{staged_files}"
