@@ -5,7 +5,7 @@ graph TD
     app[app<br/>settings, dashboard, etc.]
     global[Global Modules:<br/>lib, components, assets, config, db, api, e2e, etc.]
     features[Features:<br/>features/users, features/dashboard, ...]
-    
+
     global --> features
     features --> app
     global --> app
@@ -13,12 +13,12 @@ graph TD
 
 ## Details
 
-- `app` - renders pages only  
-  - All business logic and functionality must live outside of `/app`.  
+- `app` - renders pages only
+  - All business logic and functionality must live outside of `/app`.
   - `/app` should **only consume** modules from other folders.
 - `assets` - provides global static content for use by the application and features.
 - `e2e` - contains global end-to-end tests.
-- `lib` - stores global utility functions and logic shared across the app and features.  
+- `lib` - stores global utility functions and logic shared across the app and features.
 - `components` - houses global UI components used throughout the app and features.
 - `config` - contains global constants and configuration.
 - `db` - exposes global database functions.

@@ -52,3 +52,4 @@ node_modules/
 .vscode
 .cursor
 .claude
+.cache

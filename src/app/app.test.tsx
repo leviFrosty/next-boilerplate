@@ -13,5 +13,7 @@ test('renders production text', () => {
   );
 
   render(<MockApp />);
-  expect(screen.getByText('Production ready Next 16 boilerplate.')).toBeDefined();
+  expect(
+    screen.getByText('Production ready Next 16 boilerplate.'),
+  ).toBeDefined();
 });
