@@ -5,4 +5,9 @@ pre-commit:
       stage_fixed: true
 
     - run: bunx eslint --fix "{staged_files}"
+      glob:
+        - '*.ts'
+        - '*.js'
+        - '*.tsx'
+        - '*.jsx'
       stage_fixed: true
