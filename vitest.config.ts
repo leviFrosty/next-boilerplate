@@ -4,21 +4,15 @@ import tsconfigPaths from 'vite-tsconfig-paths';
 
 export default defineConfig({
   plugins: [tsconfigPaths(), react()],
-  optimizeDeps: {
-    exclude: ['playwright', 'playwright-core', '@playwright/test'],
-  },
   test: {
     environment: 'jsdom',
     exclude: ['**/node_modules/**', '**/dist/**', '**/e2e/**'],
-    browser: {
-      enabled: true,
-      provider: 'playwright',
-      headless: true,
-      instances: [
-        { browser: 'chromium' },
-        // { browser: 'firefox' },
-        // { browser: 'webkit' },
-      ],
+    setupFiles: ['./vitest.setup.ts'],
+    coverage: {
+      provider: 'v8',
+      include: ['src/**/*.ts'],
+      exclude: ['src/**/*.test.ts', 'src/**/*.test.tsx', 'src/e2e/**'],
+      reporter: ['text', 'html', 'json'],
     },
   },
 });
