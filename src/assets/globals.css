@@ -1,4 +1,5 @@
-@import 'tailwindcss';
+/** biome-ignore-all lint/suspicious/noUnknownAtRules: Tailwind at-rules not known by biome at this time. */
+@import "tailwindcss";
 
 :root {
   --background: #ffffff;
