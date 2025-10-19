@@ -43,13 +43,17 @@ next-env.d.ts
 
 # Playwright
 node_modules/
-/test-results/
-/playwright-report/
-/blob-report/
-/playwright/.cache/
-/playwright/.auth/
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
+playwright/.auth/
 
-.vscode
-.cursor
-.claude
-.cache
+.vscode/
+.cursor/
+.claude/
+.cache/
+.turbo/
+.vercel/
+.next/
+playwright-report/
