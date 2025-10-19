@@ -19,7 +19,9 @@ const baseURL = `http://localhost:${PORT}`;
  */
 export default defineConfig({
   webServer: {
-    command: process.env.CI ? `bun run build && bun run start` : `bun dev`,
+    command: process.env.CI
+      ? `pnpm run build && pnpm run start`
+      : `pnpm run dev`,
     url: baseURL,
     reuseExistingServer: !process.env.CI,
   },

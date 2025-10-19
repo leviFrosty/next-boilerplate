@@ -1,10 +1,10 @@
 pre-commit:
   parallel: true
   jobs:
-    - run: bunx pretty-quick --staged
+    - run: pnpm exec pretty-quick --staged
       stage_fixed: true
 
-    - run: bunx eslint --fix "{staged_files}"
+    - run: pnpm exec eslint --fix "{staged_files}"
       glob:
         - '*.ts'
         - '*.js'
