@@ -57,3 +57,4 @@ playwright/.auth/
 .vercel/
 .next/
 playwright-report/
+coverage/
