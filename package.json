@@ -13,7 +13,7 @@
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
     "start": "next start",
-    "clean": "git clean -Xdf -e '!.env*'",
+    "clean": "git clean -Xdf -e '!.env*' -e '!.claude' -e '!.vscode'",
     "lint": "eslint . --cache --cache-location .cache/eslint",
     "lint:fix": "eslint . --fix --cache --cache-location .cache/eslint",
     "fmt": "prettier --check .",
