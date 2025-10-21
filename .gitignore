@@ -51,7 +51,8 @@ playwright/.auth/
 
 .vscode/
 .cursor/
-.claude/
+!.claude/settings.json
+.claude/*.local.json
 .cache/
 .turbo/
 .vercel/
