@@ -39,7 +39,7 @@ jobs:
         if: steps.playwright-cache.outputs.cache-hit != 'true'
         run: pnpm dlx playwright install --with-deps
       - name: Run all checks
-        run: turbo run test lint fmt test:e2e
+        run: pnpm exec turbo run test lint fmt test:e2e
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:

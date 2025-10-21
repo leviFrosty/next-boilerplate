@@ -3,6 +3,7 @@ onlyBuiltDependencies:
   - esbuild
   - sharp
   - unrs-resolver
+  - lefthook
 
 overrides:
   micromatch@<4.0.8: '>=4.0.8'
