@@ -35,6 +35,7 @@
     },
     "test:e2e": {
       "dependsOn": ["^test:e2e"],
+      "env": ["PORT", "CI"],
       "outputs": ["playwright-report/**", "test-results/**"]
     },
     "dev": {

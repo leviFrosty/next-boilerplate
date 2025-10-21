@@ -22,6 +22,8 @@
     "react-dom": "19.1.0"
   },
   "devDependencies": {
+    "@cool-ice/eslint-config": "workspace:*",
+    "@cool-ice/typescript-config": "workspace:*",
     "@playwright/test": "catalog:",
     "@prettier/plugin-oxc": "^0.0.4",
     "@tailwindcss/postcss": "^4",
@@ -34,15 +36,14 @@
     "@vitejs/plugin-react": "^5.0.4",
     "@vitest/coverage-v8": "^3",
     "babel-plugin-react-compiler": "1.0.0",
-    "eslint": "^8",
-    "eslint-config-next": "^14",
-    "eslint-plugin-boundaries": "^4",
-    "eslint-plugin-import": "^2.32.0",
+    "eslint": "catalog:",
+    "eslint-config-next": "15.5.6",
+    "eslint-plugin-boundaries": "5.1.0",
+    "eslint-plugin-import": "2.32.0",
     "eslint-plugin-project-structure": "^3.13.3",
     "jsdom": "^27.0.0",
-    "prettier": "3.6.2",
     "tailwindcss": "^4",
-    "typescript": "^5",
+    "typescript": "catalog:",
     "vite-tsconfig-paths": "^5.1.4",
     "vitest": "^3.2.4"
   }

@@ -14,4 +14,6 @@ packages:
   - 'docs/*'
 
 catalog:
-  '@playwright/test': '^1.56.0'
+  '@playwright/test': '1.56.1'
+  typescript: '5.9.3'
+  eslint: '9.38.0'

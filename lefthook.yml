@@ -4,7 +4,7 @@ pre-commit:
     - run: pnpm exec pretty-quick --staged
       stage_fixed: true
 
-    - run: pnpm exec eslint --fix "{staged_files}"
+    - run: pnpm turbo lint
       glob:
         - '*.ts'
         - '*.js'
