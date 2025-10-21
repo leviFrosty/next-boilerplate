@@ -26,9 +26,6 @@ importers:
       '@playwright/test':
         specifier: 'catalog:'
         version: 1.56.1
-      eslint:
-        specifier: 'catalog:'
-        version: 9.38.0(jiti@2.6.1)
       lefthook:
         specifier: 1.13.6
         version: 1.13.6
