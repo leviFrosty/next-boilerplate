@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "deny": ["Read(./.env*)"],
+    "defaultMode": "plan"
+  },
+  "env": {
+    "CLAUDE_CODE_ENABLE_TELEMETRY": "0"
+  }
+}
