@@ -12,3 +12,6 @@ packages:
   - 'apps/*'
   - 'packages/*'
   - 'docs/*'
+
+catalog:
+  '@playwright/test': '^1.56.0'

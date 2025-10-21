@@ -18,6 +18,7 @@
     "fmt:fix": "prettier --write ."
   },
   "devDependencies": {
+    "@playwright/test": "catalog:",
     "lefthook": "1.13.6",
     "prettier": "3.6.2",
     "pretty-quick": "4.2.2",
