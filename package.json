@@ -1,7 +1,7 @@
 {
   "name": "cool-ice",
   "private": true,
-  "packageManager": "pnpm@10.18.3",
+  "packageManager": "pnpm@10.19.0",
   "scripts": {
     "dev": "turbo run dev --parallel",
     "build": "turbo run build",
@@ -35,6 +35,9 @@
       "lefthook",
       "sharp",
       "unrs-resolver"
+    ],
+    "ignoredBuiltDependencies": [
+      "core-js-pure"
     ]
   },
   "engines": {
