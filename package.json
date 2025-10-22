@@ -30,15 +30,16 @@
       "parse5": "7.1.2"
     },
     "onlyBuiltDependencies": [
+      "@parcel/watcher",
       "@tailwindcss/oxide",
       "esbuild",
       "lefthook",
       "sharp",
-      "unrs-resolver"
-    ],
-    "ignoredBuiltDependencies": [
+      "unrs-resolver",
+      "@parcel/watcher",
       "core-js-pure"
-    ]
+    ],
+    "ignoredBuiltDependencies": []
   },
   "engines": {
     "node": ">=18"

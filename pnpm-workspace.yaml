@@ -11,7 +11,7 @@ overrides:
 packages:
   - 'apps/*'
   - 'packages/*'
-  - 'docs/*'
+  - 'docs'
 
 catalog:
   '@playwright/test': '1.56.1'
