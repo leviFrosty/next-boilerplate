@@ -276,6 +276,7 @@ pnpm fmt:fix          # Format with Prettier
 
 ## Learn More
 
+- [Contributing](./CONTRIBUTING.md) - How to contribute
 - [Project Structure](./docs/project-structure.md) - Architecture & boundaries
 - [UI Components](./docs/ui-components.md) - shadcn/ui monorepo setup
 - [Next.js 16 Docs](https://nextjs.org/docs) - Next.js features
