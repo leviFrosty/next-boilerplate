@@ -1,135 +1,287 @@
-# Turborepo starter
+# cool-ice
 
-This Turborepo starter is maintained by the Turborepo core team.
+Production-ready Next.js 16 monorepo built for large teams and codebases. Heavily opinionated with enforced architecture boundaries.
 
-## Using this example
+## Features
 
-Run the following command:
+### Stack
+
+- **Next.js 16 Beta** with React 19 + React Compiler
+- **Turborepo** with pnpm workspaces + catalog dependencies
+- **Tailwind CSS v4** with optimized PostCSS setup
+- **shadcn/ui** integration (auto-routes UI → packages, blocks → apps)
+- **TypeScript** throughout with shared configs
+
+### Architecture
+
+- **Enforced folder structure** via ESLint boundaries plugin
+  - Features isolated (no cross-feature imports)
+  - One-way data flow: `global → features → app`
+  - Linter errors prevent architectural violations
+- **Monorepo UI package** with workspace protocol
+- See [docs/project-structure.md](./docs/project-structure.md)
+
+### Testing & Quality
+
+- **Vitest** unit testing with coverage
+- **Playwright** E2E testing
+- **React Testing Library** integration
+- **ESLint** (TypeScript, React, Next.js rules + boundaries)
+- **Prettier** with pretty-quick
+- **Lefthook** pre-commit hooks (format + lint staged files)
+
+### Documentation
+
+- **VuePress** docs site
+- GitHub Pages auto-deploy on push to main
+
+## Why This Architecture?
+
+### Common Large-Scale Problems This Solves
+
+**Circular Dependencies & Import Hell**
+
+- Without boundaries, features import from each other freely
+- `features/cart` imports `features/checkout`, which imports `features/cart`
+- Causes build failures, hard-to-trace bugs, impossible refactors
+- **Solution**: ESLint boundaries plugin prevents cross-feature imports at commit time
+
+**Tech Debt Accumulation**
+
+- "Just this once" coupling compounds over months
+- Changing one feature breaks three others
+- No one knows what depends on what
+- **Solution**: Enforced one-way flow (`global → features → app`), violations fail CI
+
+**Slow Onboarding**
+
+- New devs spend weeks understanding implicit rules
+- "Where does this go?" becomes a daily question
+- Inconsistent patterns across the codebase
+- **Solution**: Clear folder structure with linter enforcement - wrong placement = error
+
+**Testing Gaps**
+
+- "We'll add tests later" never happens
+- CI has no test job, issues slip to production
+- No E2E infrastructure when needed
+- **Solution**: Vitest + Playwright + React Testing Library configured from day one
+
+**Tooling Setup Tax**
+
+- Each project: configure ESLint, Prettier, git hooks, CI/CD
+- Copy-paste configs, miss updates, inconsistent quality checks
+- **Solution**: All tooling ready and unified into single source of truth packages and package version. See [pnpm-workspace.yml](pnpm-workspace.yaml)
+
+### Batteries Included Philosophy
+
+**Start building features immediately.** No weeks spent on:
+
+- ❌ Choosing/configuring linters
+- ❌ Setting up test runners
+- ❌ Integrating component libraries
+- ❌ Architecting folder structure
+- ❌ CI/CD pipeline setup
+- ❌ Documentation infrastructure
+
+**Everything is pre-configured and working:**
+
+- ✅ Commit hooks auto-format and lint staged files
+- ✅ CI fails on boundary violations before merge
+- ✅ Tests run on every push
+- ✅ Docs auto-deploy to GitHub Pages
+- ✅ Monorepo builds cached via Turborepo
+- ✅ Shadcn monorepo integration
+- ✅ Tests & end-to-end playwright
+
+**Focus on product, not plumbing.**
+
+## Why Use This
+
+✅ **Large team/codebase ready** - Architecture prevents inter-feature dependencies
+
+✅ **Latest tech** - Next 16, React 19, React Compiler, Tailwind v4
+
+✅ **Prevents tech debt** - Linter enforces boundaries, catches violations in CI
+
+✅ **Full testing setup** - Unit + E2E configured out of the box
+
+✅ **DX optimized** - Turbo caching, pnpm workspaces, git hooks
+
+✅ **Batteries included** - All tooling configured, just build features
+
+## Why NOT Use This
+
+❌ **Heavily opinionated** - Folder structure is enforced, not flexible
+
+❌ **Overkill for small projects** - Complex setup for simple apps
+
+❌ **Beta versions** - Next 16 and React 19 still in beta
+
+❌ **Learning curve** - Boundaries rules require understanding architecture
+
+If you need flexibility or a simple starter, use `create-next-app` or `create-turbo` instead.
+
+## Quick Start
+
+### 1. Clone/fork this repo
 
 ```sh
-npx create-turbo@latest
+git clone https://github.com/your-username/cool-ice.git my-project
+cd my-project
 ```
 
-## What's inside?
+### 2. Rename the workspace
 
-This Turborepo includes the following packages/apps:
+Find and replace `@cool-ice` with your org name across the codebase:
 
-### Apps and Packages
+```sh
+# macOS/Linux
+find . -type f \( -name "*.json" -o -name "*.ts" -o -name "*.tsx" -o -name "*.js" -o -name "*.md" \) \
+  -not -path "*/node_modules/*" -not -path "*/.git/*" \
+  -exec sed -i '' 's/@cool-ice/@your-org/g' {} +
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build
-yarn dlx turbo build
-pnpm exec turbo build
+# Linux (without '')
+find . -type f \( -name "*.json" -o -name "*.ts" -o -name "*.tsx" -o -name "*.js" -o -name "*.md" \) \
+  -not -path "*/node_modules/*" -not -path "*/.git/*" \
+  -exec sed -i 's/@cool-ice/@your-org/g' {} +
 ```
 
-You can build a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
+Update root `package.json` name:
 
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build --filter=docs
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build --filter=docs
-yarn exec turbo build --filter=docs
-pnpm exec turbo build --filter=docs
+```json
+{
+  "name": "your-project-name",
+  ...
+}
 ```
 
-### Develop
+### 3. Install dependencies
 
-To develop all apps and packages, run the following command:
-
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev
-yarn exec turbo dev
-pnpm exec turbo dev
+```sh
+pnpm install
 ```
 
-You can develop a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
+### 4. Run development server
 
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev --filter=web
+```sh
+# All apps
+pnpm dev
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev --filter=web
-yarn exec turbo dev --filter=web
-pnpm exec turbo dev --filter=web
+# Specific app
+pnpm dev --filter=web
 ```
 
-### Remote Caching
+Open [http://localhost:3000](http://localhost:3000)
 
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
+### 5. Build
 
-Turborepo can use a technique known as [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
-
+```sh
+pnpm build
 ```
-cd my-turborepo
 
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo login
+### 6. Setup CI (Optional but Recommended)
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo login
-yarn exec turbo login
+**Turbo Remote Cache** speeds up CI by sharing build cache across machines.
+
+#### GitHub Actions Setup
+
+1. **Create Vercel account** (free): [vercel.com/signup](https://vercel.com/signup)
+
+2. **Link Turborepo**:
+
+```sh
+# Login to Vercel
 pnpm exec turbo login
-```
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo link
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo link
-yarn exec turbo link
+# Link your repo
 pnpm exec turbo link
 ```
 
-## Useful Links
+3. **Add secrets to GitHub**:
+   - Go to repo **Settings → Secrets and variables → Actions**
+   - Add `TURBO_TOKEN`: Get from `pnpm exec turbo login` output
+   - Add `TURBO_TEAM`: Your Vercel team slug (in Turbo link output)
 
-Learn more about the power of Turborepo:
+4. **Secrets are referenced in `.github/workflows/deploy-docs.yml`**:
 
-- [Tasks](https://turborepo.com/docs/crafting-your-repository/running-tasks)
-- [Caching](https://turborepo.com/docs/crafting-your-repository/caching)
-- [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.com/docs/reference/configuration)
-- [CLI Usage](https://turborepo.com/docs/reference/command-line-reference)
+```yaml
+env:
+  TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
+  TURBO_TEAM: ${{ vars.TURBO_TEAM }}
+```
+
+**Without Remote Cache**: CI builds from scratch every time (slower)
+
+**With Remote Cache**: CI reuses builds from previous runs and local dev (5-10x faster)
+
+## Project Structure
+
+```txt
+apps/
+  web/              # Next.js app (Next 16 + React 19)
+packages/
+  ui/               # Shared shadcn/ui components
+  eslint-config/    # Shared ESLint configs with boundaries
+  typescript-config/# Shared tsconfig
+docs/               # VuePress documentation site
+```
+
+### Web App Structure
+
+```txt
+apps/web/src/
+  app/              # Next.js App Router (pages only, no logic)
+  features/         # Feature modules (isolated, no cross-imports)
+    feature-name/
+      components/
+      lib/
+      db/
+      api/
+  components/       # Global UI components + shadcn blocks
+  lib/              # Global utilities
+  e2e/              # Playwright tests
+```
+
+See [docs/project-structure.md](./docs/project-structure.md) for architecture details.
+
+## Adding shadcn/ui Components
+
+Always run from `apps/web`:
+
+```sh
+cd apps/web
+
+# UI component → packages/ui/src/components/
+pnpm dlx shadcn@canary add button
+
+# Block → apps/web/components/ (+ deps to packages/ui)
+pnpm dlx shadcn@canary add login-01
+```
+
+See [docs/ui-components.md](./docs/ui-components.md) for monorepo setup details.
+
+## Scripts
+
+```sh
+pnpm dev              # Run all apps in dev mode
+pnpm build            # Build all apps
+pnpm lint             # Lint all packages
+pnpm lint:fix         # Fix lint issues
+pnpm test             # Run all tests
+pnpm test:e2e         # Run Playwright E2E tests
+pnpm typecheck        # TypeScript type checking
+pnpm fmt:fix          # Format with Prettier
+```
+
+## Learn More
+
+- [Project Structure](./docs/project-structure.md) - Architecture & boundaries
+- [UI Components](./docs/ui-components.md) - shadcn/ui monorepo setup
+- [Next.js 16 Docs](https://nextjs.org/docs) - Next.js features
+- [Turborepo Docs](https://turborepo.com/docs) - Monorepo tools
+- [Feature Folder Structure Video](https://www.youtube.com/watch?v=xyxrB2Aa7KE) - Kyle Cook's explanation
+
+## License
+
+MIT
