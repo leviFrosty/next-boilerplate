@@ -6,6 +6,7 @@ import pluginReact from 'eslint-plugin-react';
 import globals from 'globals';
 import pluginNext from '@next/eslint-plugin-next';
 import { config as baseConfig } from './base.js';
+import pluginBoundaries from 'eslint-plugin-boundaries';
 
 /**
  * A custom ESLint configuration for libraries that use Next.js.
@@ -48,5 +49,81 @@ export const nextJsConfig = [
   },
   {
     ignores: ['.next/**'],
+  },
+  {
+    plugins: {
+      boundaries: pluginBoundaries,
+    },
+    settings: {
+      'import/resolver': {
+        typescript: {
+          alwaysTryTypes: true,
+        },
+      },
+      'boundaries/include': ['src/**/*'],
+      'boundaries/elements': [
+        {
+          mode: 'full',
+          type: 'shared',
+          pattern: [
+            'src/components/**/*',
+            'src/data/**/*',
+            'src/drizzle/**/*',
+            'src/hooks/**/*',
+            'src/lib/**/*',
+            'src/server/**/*',
+            'src/e2e/**/*',
+          ],
+        },
+        {
+          mode: 'full',
+          type: 'feature',
+          capture: ['featureName'],
+          pattern: ['src/features/*/**/*'],
+        },
+        {
+          mode: 'full',
+          type: 'app',
+          capture: ['_', 'fileName'],
+          pattern: ['src/app/**/*'],
+        },
+        {
+          mode: 'full',
+          type: 'neverImport',
+          pattern: ['src/*', 'src/tasks/**/*'],
+        },
+      ],
+    },
+    rules: {
+      'boundaries/no-unknown': ['error'],
+      'boundaries/no-unknown-files': ['error'],
+      'boundaries/element-types': [
+        'error',
+        {
+          default: 'disallow',
+          rules: [
+            {
+              from: ['shared'],
+              allow: ['shared'],
+            },
+            {
+              from: ['feature'],
+              allow: [
+                'shared',
+                ['feature', { featureName: '${from.featureName}' }],
+              ],
+            },
+            {
+              from: ['app', 'neverImport'],
+              allow: ['shared', 'feature'],
+            },
+            {
+              from: ['app'],
+              allow: [['app', { fileName: '*.css' }]],
+            },
+          ],
+        },
+      ],
+    },
   },
 ];
