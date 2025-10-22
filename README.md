@@ -1,6 +1,49 @@
-# cool-ice
+<div align="center">
 
-Production-ready Next.js 16 monorepo built for large teams and codebases. Heavily opinionated with enforced architecture boundaries.
+# ❄️ cool-ice
+
+**Production-ready Next.js 16 monorepo built for large teams**
+Heavily opinionated with enforced architecture boundaries
+
+![Next.js 16](https://img.shields.io/badge/Next.js-16_Beta-black?style=for-the-badge&logo=next.js)
+![React 19](https://img.shields.io/badge/React-19-61dafb?style=for-the-badge&logo=react)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-3178c6?style=for-the-badge&logo=typescript)
+![Tailwind v4](https://img.shields.io/badge/Tailwind-v4-38bdf8?style=for-the-badge&logo=tailwind-css)
+![Turborepo](https://img.shields.io/badge/Turborepo-Monorepo-ef4444?style=for-the-badge&logo=turborepo)
+
+```txt
+┌─────────────────────────────────────────────────────────┐
+│                     APP ROUTER                          │
+│                    (pages only)                         │
+└─────────────────────────────────────────────────────────┘
+                           ▲
+                           │ one-way flow
+                           │
+┌─────────────────────────────────────────────────────────┐
+│                      FEATURES/                          │
+│   ┌──────────┐  ┌──────────┐  ┌──────────┐              │
+│   │ cart/    │  │ checkout/│  │ profile/ │   ← isolated │
+│   │  ├─ api/ │  │  ├─ api/ │  │  ├─ api/ │              │
+│   │  ├─ db/  │  │  ├─ db/  │  │  ├─ db/  │              │
+│   │  └─ lib/ │  │  └─ lib/ │  │  └─ lib/ │              │
+│   └──────────┘  └──────────┘  └──────────┘              │
+│      ✗              ✗              ✗                    │
+│      └──────────────┴──────────────┘                    │
+│         no cross-feature imports                        │
+└─────────────────────────────────────────────────────────┘
+                           ▲
+                           │
+┌─────────────────────────────────────────────────────────┐
+│                  GLOBAL (components/, lib/)             │
+│              shared utilities & UI components           │
+└─────────────────────────────────────────────────────────┘
+
+  ESLint boundaries plugin enforces architecture at commit time
+```
+
+</div>
+
+---
 
 ## Features
 
