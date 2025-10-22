@@ -13,6 +13,18 @@ export const config = [
   js.configs.recommended,
   eslintConfigPrettier,
   ...tseslint.configs.recommended,
+  ...tseslint.configs.recommendedTypeChecked,
+  {
+    languageOptions: {
+      parserOptions: {
+        projectService: true,
+      },
+    },
+  },
+  {
+    files: ['**/*.config.{js,mjs,cjs}', '**/eslint.config.js'],
+    ...tseslint.configs.disableTypeChecked,
+  },
   {
     plugins: {
       turbo: turboPlugin,
